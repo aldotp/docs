@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Istanapro",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -44,40 +44,32 @@
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Bidang",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/bidang_list",
+              "api-reference/endpoint/bidang_create",
+              "api-reference/endpoint/bidang_get_by_id"
+            ]
+          },
+          {
+            "group": "Perolehan",
+            "pages": [
+              "api-reference/endpoint/perolehan_list",
+              "api-reference/endpoint/perolehan_create",
+              "api-reference/endpoint/perolehan_get_by_id"
+            ]
+          },
+          {
+            "group": "Pemanfaatan",
+            "pages": [
+              "api-reference/endpoint/pemanfaatan_list",
+              "api-reference/endpoint/pemanfaatan_create",
+              "api-reference/endpoint/pemanfaatan_get_by_id"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    ]
   },
   "navbar": {
     "links": [
