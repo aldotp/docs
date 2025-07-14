@@ -1,216 +1,159 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
+    "title": "API Bidang",
+    "version": "1.0.0",
+    "description": "Dokumentasi endpoint untuk membuat bidang."
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
-    }
-  ],
-  "security": [
-    {
-      "bearerAuth": []
+      "url": "{{url}}"
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
+    "/v1/bidang": {
+      "post": {
+        "summary": "Create bidang",
+        "description": "Membuat bidang baru.",
+        "security": [
           {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
+            "basicAuth": []
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "kode_lokasi": { "type": "string" },
+                  "nomor_sertifikat": { "type": "string" },
+                  "tanggal_terbit_sertifikat": { "type": "string", "format": "date-time" },
+                  "nib": { "type": "string" },
+                  "nomor_surat_ukur": { "type": "string" },
+                  "luas_bidang_hpl": { "type": "number" },
+                  "kode_bidang": { "type": "string" },
+                  "bidang_id": { "type": "integer" },
+                  "perolehan_id": { "type": "integer" },
+                  "created_at": { "type": "string", "format": "date-time" },
+                  "created_by": { "type": "string" }
+                },
+                "required": [
+                  "kode_lokasi",
+                  "nomor_sertifikat",
+                  "tanggal_terbit_sertifikat",
+                  "nib",
+                  "nomor_surat_ukur",
+                  "luas_bidang_hpl",
+                  "kode_bidang",
+                  "bidang_id",
+                  "perolehan_id",
+                  "created_at",
+                  "created_by"
+                ]
+              },
+              "example": {
+                "kode_lokasi": "KODE2xax",
+                "nomor_sertifikat": "SERT789xxwalaweeexx",
+                "tanggal_terbit_sertifikat": "2025-07-03T08:53:07+07:00",
+                "nib": "NIB123456",
+                "nomor_surat_ukur": "SU-001",
+                "luas_bidang_hpl": 1000.5,
+                "kode_bidang": "BID001",
+                "bidang_id": 1,
+                "perolehan_id": 2,
+                "created_at": "2025-07-03T08:53:07+07:00",
+                "created_by": "admin"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
-            "description": "Plant response",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "kode_bidang": { "type": "string" },
+                        "bidang_id": { "type": "integer" },
+                        "kode_lokasi": { "type": "string" },
+                        "perolehan_id": { "type": "integer" },
+                        "nomor_sertifikat": { "type": "string" },
+                        "tanggal_terbit_sertifikat": { "type": "string" },
+                        "nib": { "type": "string" },
+                        "nomor_surat_ukur": { "type": "string" },
+                        "luas_bidang_hpl": { "type": "number" },
+                        "created_at": { "type": "string" },
+                        "created_by": { "type": "string" }
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "success": {
+                    "value": {
+                      "status": "00",
+                      "message": "success",
+                      "data": {
+                        "kode_bidang": "BID001",
+                        "bidang_id": 1,
+                        "kode_lokasi": "KODE2xax",
+                        "perolehan_id": 2,
+                        "nomor_sertifikat": "SERT789xxwalaweeexx",
+                        "tanggal_terbit_sertifikat": "2025-07-03T08:53:07+07:00",
+                        "nib": "NIB123456",
+                        "nomor_surat_ukur": "SU-001",
+                        "luas_bidang_hpl": 1000.5,
+                        "created_at": "2025-07-03T08:53:07+07:00",
+                        "created_by": "admin"
+                      }
+                    }
                   }
                 }
               }
             }
           },
-          "400": {
-            "description": "Unexpected error",
+          "404": {
+            "description": "perolehan_id not found",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" },
+                    "traceId": { "type": "string" }
+                  }
+                },
+                "examples": {
+                  "perolehan_id not found": {
+                    "value": {
+                      "status": "ISTN05",
+                      "message": "perolehan_id not found",
+                      "traceId": "73a5504d-77ec-4574-81ad-a28ae52cd666"
+                    }
+                  }
                 }
               }
             }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
           }
         }
       }
     }
   },
   "components": {
-    "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      }
-    },
     "securitySchemes": {
-      "bearerAuth": {
+      "basicAuth": {
         "type": "http",
-        "scheme": "bearer"
+        "scheme": "basic"
       }
     }
   }
