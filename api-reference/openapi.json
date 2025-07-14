@@ -36,6 +36,22 @@
           "created_by": { "type": "string" }
         }
       },
+      "BidangRequest": {
+        "type": "object",
+        "properties": {
+          "kode_bidang": { "type": "string" },
+          "bidang_id": { "type": "integer" },
+          "kode_lokasi": { "type": "string" },
+          "perolehan_id": { "type": "integer" },
+          "nomor_sertifikat": { "type": "string" },
+          "tanggal_terbit_sertifikat": { "type": "string", "format": "date-time" },
+          "nib": { "type": "string" },
+          "nomor_surat_ukur": { "type": "string" },
+          "luas_bidang_hpl": { "type": "number" },
+          "created_at": { "type": "string", "format": "date-time" },
+          "created_by": { "type": "string" }
+        }
+      },
       "Pemanfaatan": {
         "type": "object",
         "properties": {
@@ -54,10 +70,47 @@
           "created_by": { "type": "string" }
         }
       },
+      "PemanfaatanRequest": {
+        "type": "object",
+        "properties": {
+          "id_lokasi": { "type": "string" },
+          "id_bidang": { "type": "string" },
+          "customer_name": { "type": "string" },
+          "contract_type": { "type": "integer" },
+          "billing_payment_term": { "type": "integer" },
+          "currency": { "type": "integer" },
+          "date": { "type": "string", "format": "date-time" },
+          "contract_period_start": { "type": "string", "format": "date-time" },
+          "contract_period_end": { "type": "string", "format": "date-time" },
+          "potensi_pendapatan": { "type": "integer" },
+          "created_at": { "type": "string", "format": "date-time" },
+          "created_by": { "type": "string" }
+        }
+      },
       "Perolehan": {
         "type": "object",
         "properties": {
           "id": { "type": "integer" },
+          "kode_lokasi": { "type": "string" },
+          "perolehan_id": { "type": "integer" },
+          "provinsi": { "type": "string" },
+          "kabupaten_kota": { "type": "string" },
+          "kelurahan_desa": { "type": "string" },
+          "luas_potensi": { "type": "number" },
+          "luas_pbt": { "type": "number" },
+          "luas_realisasi": { "type": "number" },
+          "tahun_rencana": { "type": "integer" },
+          "tahun_perolehan": { "type": "integer" },
+          "pemegang_hak_sebelumnya": { "type": "string" },
+          "dasar_perolehan": { "type": "string" },
+          "nomor_sk": { "type": "string" },
+          "created_at": { "type": "string", "format": "date-time" },
+          "created_by": { "type": "string" }
+        }
+      },
+      "PerolehanRequest": {
+        "type": "object",
+        "properties": {
           "kode_lokasi": { "type": "string" },
           "perolehan_id": { "type": "integer" },
           "provinsi": { "type": "string" },
@@ -113,7 +166,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/Bidang" }
+              "schema": { "$ref": "#/components/schemas/BidangRequest" }
             }
           }
         },
@@ -185,7 +238,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/Perolehan" }
+              "schema": { "$ref": "#/components/schemas/PerolehanRequest" }
             }
           }
         },
@@ -257,7 +310,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/Pemanfaatan" }
+              "schema": { "$ref": "#/components/schemas/PemanfaatanRequest" }
             }
           }
         },
