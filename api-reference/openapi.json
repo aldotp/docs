@@ -19,6 +19,22 @@
       }
     },
     "schemas": {
+      "SuccessCreate": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "00",
+            "description": "Kode status sukses (misalnya '00' berarti sukses)"
+          },
+          "message": {
+            "type": "string",
+            "example": "success",
+            "description": "Pesan konfirmasi bahwa operasi berhasil"
+          }
+        },
+        "required": ["status", "message"]
+      },
       "Bidang": {
         "type": "object",
         "properties": {
@@ -28,7 +44,7 @@
           "kode_lokasi": { "type": "string" },
           "perolehan_id": { "type": "integer" },
           "nomor_sertifikat": { "type": "string" },
-          "tanggal_terbit_sertifikat": { "type": "string", "format": "date-time" },
+          "tanggal_terbit_sertifikat": { "type": "string", "format": "date" },
           "nib": { "type": "string" },
           "nomor_surat_ukur": { "type": "string" },
           "luas_bidang_hpl": { "type": "number" },
@@ -44,12 +60,10 @@
           "kode_lokasi": { "type": "string" },
           "perolehan_id": { "type": "integer" },
           "nomor_sertifikat": { "type": "string" },
-          "tanggal_terbit_sertifikat": { "type": "string", "format": "date-time" },
+          "tanggal_terbit_sertifikat": { "type": "string", "format": "date" },
           "nib": { "type": "string" },
           "nomor_surat_ukur": { "type": "string" },
-          "luas_bidang_hpl": { "type": "number" },
-          "created_at": { "type": "string", "format": "date-time" },
-          "created_by": { "type": "string" }
+          "luas_bidang_hpl": { "type": "number" }
         }
       },
       "Pemanfaatan": {
@@ -62,9 +76,9 @@
           "contract_type": { "type": "integer" },
           "billing_payment_term": { "type": "integer" },
           "currency": { "type": "integer" },
-          "date": { "type": "string", "format": "date-time" },
-          "contract_period_start": { "type": "string", "format": "date-time" },
-          "contract_period_end": { "type": "string", "format": "date-time" },
+          "date": { "type": "string", "format": "date" },
+          "contract_period_start": { "type": "string", "format": "date" },
+          "contract_period_end": { "type": "string", "format": "date" },
           "potensi_pendapatan": { "type": "integer" },
           "created_at": { "type": "string", "format": "date-time" },
           "created_by": { "type": "string" }
@@ -79,12 +93,10 @@
           "contract_type": { "type": "integer" },
           "billing_payment_term": { "type": "integer" },
           "currency": { "type": "integer" },
-          "date": { "type": "string", "format": "date-time" },
+          "date": { "type": "string", "format": "date" },
           "contract_period_start": { "type": "string", "format": "date-time" },
           "contract_period_end": { "type": "string", "format": "date-time" },
-          "potensi_pendapatan": { "type": "integer" },
-          "created_at": { "type": "string", "format": "date-time" },
-          "created_by": { "type": "string" }
+          "potensi_pendapatan": { "type": "integer" }
         }
       },
       "Perolehan": {
@@ -123,9 +135,7 @@
           "tahun_perolehan": { "type": "integer" },
           "pemegang_hak_sebelumnya": { "type": "string" },
           "dasar_perolehan": { "type": "string" },
-          "nomor_sk": { "type": "string" },
-          "created_at": { "type": "string", "format": "date-time" },
-          "created_by": { "type": "string" }
+          "nomor_sk": { "type": "string" }
         }
       }
     }
@@ -175,7 +185,13 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Bidang" }
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" }
+                  }
+                }
               }
             }
           }
@@ -247,7 +263,13 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Perolehan" }
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" }
+                  }
+                }
               }
             }
           }
@@ -319,7 +341,13 @@
             "description": "Success",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Pemanfaatan" }
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "message": { "type": "string" }
+                  }
+                }
               }
             }
           }
