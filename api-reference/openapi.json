@@ -45,6 +45,10 @@
           "perolehan_id": { "type": "integer" },
           "nomor_sertifikat": { "type": "string" },
           "tanggal_terbit_sertifikat": { "type": "string", "format": "date" },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
           "nib": { "type": "string" },
           "nomor_surat_ukur": { "type": "string" },
           "luas_bidang_hpl": { "type": "number" },
@@ -60,6 +64,10 @@
           "kode_lokasi": { "type": "string" },
           "perolehan_id": { "type": "integer" },
           "nomor_sertifikat": { "type": "string" },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
           "tanggal_terbit_sertifikat": { "type": "string", "format": "date" },
           "nib": { "type": "string" },
           "nomor_surat_ukur": { "type": "string" },
@@ -79,6 +87,10 @@
           "date": { "type": "string", "format": "date" },
           "contract_period_start": { "type": "string", "format": "date" },
           "contract_period_end": { "type": "string", "format": "date" },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
           "potensi_pendapatan": { "type": "integer" },
           "created_at": { "type": "string", "format": "date-time" },
           "created_by": { "type": "string" }
@@ -96,6 +108,10 @@
           "date": { "type": "string", "format": "date" },
           "contract_period_start": { "type": "string", "format": "date-time" },
           "contract_period_end": { "type": "string", "format": "date-time" },
+          "quantity": {
+            "type": "number",
+            "format": "double"
+          },
           "potensi_pendapatan": { "type": "integer" }
         }
       },
